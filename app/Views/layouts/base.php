@@ -126,30 +126,31 @@
             border-color: var(--primary-color);
             box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
         }
+        .book-cover {
+            width: 180px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 1rem;
+            background: #f0f0f0;
+            margin: 1rem auto;
+            display: block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
     </style>
-</head>
+</head>`
 <body>
     <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="<?= base_url('/books') ?>">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/City_of_Surabaya_Logo.svg"
                         alt="Logo Surabaya"
-                        style="height: 50px; margin-right: 10px;">
+                        style="height: 40px; margin-right: 20px;">
                     Sistem Informasi Perpustakaan
                 </a>
-            
-            <div class="search-container d-none d-md-block">
-                <form action="<?= base_url('/books/search') ?>" method="GET" class="d-flex">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Telusuri buku..." 
-                           value="<?= esc($keyword ?? '') ?>">
-                    <button class="btn btn-outline-primary" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
             </div>
-        </div>
-    </nav>
+        </nav>
+
 
     <!-- Main Content -->
     <main>
@@ -161,22 +162,6 @@
     
     <!-- Custom JS -->
     <script>
-        // Function to show book location
-        async function showBookLocation(bookId) {
-            try {
-                const response = await fetch(`<?= base_url('/books/location/') ?>${bookId}`);
-                const data = await response.json();
-                
-                if (data.status === 'success') {
-                    alert(`Lokasi Buku:\n${data.location}\nBarcode: ${data.barcode}`);
-                } else {
-                    alert('Terjadi kesalahan saat mengambil lokasi buku');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat mengambil lokasi buku');
-            }
-        }
 
         // Mobile search toggle
         function toggleMobileSearch() {
